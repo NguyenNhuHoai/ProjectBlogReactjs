@@ -1,42 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CommentAction from './CommentAction'
 import CommentForm from './CommentForm'
+import CommentsSection from './CommentsSection'
+import { useCommentPaging } from '../../hooks/useCommentPaging'
 
 const CommentItem = (props) => {
+    const [isShowForm, setIsShowForm] = useState(false)
     const isThisParent = props.parentId === 0
+    const { comments: replycomment,
+        handleLoadMore,
+        loading,
+      
+        exclude
+    } = useCommentPaging({
+        parentId: props.comment.id
+    })
+
+    function handleOnRepLyClick() {
+        setIsShowForm(!isShowForm)
+    }
+
+
     return (
         <li className="item">
-            <div className="comments__section">
-                <div className="comments__section--avatar">
-                    <a href="/">
-                        <img src="/assets/images/avatar1.jpg" alt="" />
-                    </a>
-                </div>
-                <div className="comments__section--content">
-                    <a href="/" className="comments__section--user">John Smith</a>
-                    <p className="comments__section--time">2 minutes ago</p>
-                    <p className="comments__section--text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt sequi odit exercitationem maiores, iusto unde quibusdam! Ullam nisi iste reprehenderit, expedita nam ad. Nisi hic at voluptate sint incidunt aut?</p>
-                    {/* <i class="ion-reply comments__section--reply"></i> */}
-                </div>
-            </div>
+            <CommentsSection
+                onRepLyClick={handleOnRepLyClick}
+                comment={props.comment}
+                parentId={props.comment.id}
+            />
             {/* Reply Comments */}
             {
-                isThisParent && false &&
+                isThisParent && replycomment?.length > 0 &&
                 (
                     <ul className="comments">
-                        <CommentItem parentId={123456} />
-                        <CommentItem parentId={123455} />
+                        {
+                            replycomment.map(replyCmtItem => {
+                                return <CommentItem key={replyCmtItem.id} parentId={props.comment.id} comment={replyCmtItem} />
+                            })
+                        }
                     </ul>
                 )
             }
             {/* Reply form */}
             {
-                isThisParent && (
-                    <CommentAction count={20} />
+                isThisParent && props.comment.replyCount > 0 && (
+                    <CommentAction
+                        loading={loading}
+                        count={props.comment.replyCount - replycomment.length + exclude.length}
+                        onClick={handleLoadMore}
+                    />
                 )
             }
             {
-                isThisParent && false && <CommentForm />
+                isThisParent && isShowForm && <CommentForm />
             }
         </li>
     )

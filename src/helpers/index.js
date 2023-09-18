@@ -1,5 +1,5 @@
 import dayjs from "dayjs"
-import { AVATAR, DATE_TEMPLATE, MESSAGE_FORM_ERROR } from "../constants"
+import { AVATAR, DATE_TEMPLATE, DATE_TEMPLATE_FULL, MESSAGE_FORM_ERROR } from "../constants"
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/vi'
 
@@ -100,7 +100,7 @@ export function mappingCurrentUser(user) {
     id: user.id,
     email: user.email,
     nickname: user.nickname,
-    avatar: user.avatar_urls[96]
+    avatar: user.simple_local_avatar?.full || AVATAR
   }
 }
 
@@ -160,12 +160,20 @@ export function getPostLink(slug) {
 // FormatedDate
 dayjs.extend(relativeTime)
 dayjs.locale('vi')
-export function formatedDate(date) {
+export function formatedDate(date, isFull) {
   const createDateOjb = dayjs(date)
 
-  const dateFormated = createDateOjb.format(DATE_TEMPLATE)
+  const dateFormated = createDateOjb.format(isFull ? DATE_TEMPLATE_FULL : DATE_TEMPLATE)
   const dateRelated = createDateOjb.fromNow()
   return { dateFormated, dateRelated }
 }
 
-
+export function getDefauldPaging() {
+  return {
+    list: [],
+    currentPage: 0,
+    total: 0,
+    toalPages: 1,
+    exclude: []
+  }
+}

@@ -9,9 +9,16 @@ export const ACT_FETCH_ARTICLE_POPULAR = 'ACT_FETCH_ARTICLE_POPULAR'
 export const ACT_FETCH_ARTICLES = 'ACT_FETCH_ARTICLES'
 export const ACT_FETCH_POST_DETAIL = 'ACT_FETCH_ARTICLE_POST_DETAIL'
 export const ACT_FETCH_RELATED_POST = 'ACT_FETCH_RELATED_POST'
+export const ACT_INCREASE_COMMENT_COUNT = 'ACT_INCREASE_COMMENT_COUNT'
 
 
 // ACT CREATER
+export function actIncreaseComnetCount() {
+    return {
+        type: ACT_INCREASE_COMMENT_COUNT
+    }
+}
+
 
 export function actFetchArticleLatest(posts) {
     return {

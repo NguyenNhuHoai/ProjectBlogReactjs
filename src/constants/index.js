@@ -4,6 +4,8 @@ export const AVATAR = 'https://kynguyenlamdep.com/wp-content/uploads/2022/06/anh
 
 export const DATE_TEMPLATE = 'DD/MM/YYYY'
 
+export const DATE_TEMPLATE_FULL = 'DD/MM/YYYY HH:mm:ss'
+
 export const ACCESS_TOKEN = 'access_token'
 
 export const MESSAGE_FORM_ERROR = {

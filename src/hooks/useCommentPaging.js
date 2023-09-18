@@ -1,22 +1,29 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { actFetchCommentAsync } from "../store/comment/actions"
+import { getDefauldPaging } from "../helpers"
 
 const fnPostIdSelector = state => state.POST?.postDetail?.id
 const fnParentPagingSelector = state => state.COMMENT.parentPaging
+const fnChildPagingSlector = (state, parentId) => state.COMMENT.hashChildPaging[parentId]
 
 export function useCommentPaging({
-    extraParams = {}
+    parentId = 0,
 } = {}) {
     const dispatch = useDispatch()
     const postId = useSelector(fnPostIdSelector)
     const {
         list: comments,
         currentPage,
-        total,
-        toalPages
-    } = useSelector(fnParentPagingSelector)
-
+        total: _total,
+        toalPages,
+        exclude
+    } = useSelector(state => {
+        if (parentId === 0) {
+            return fnParentPagingSelector(state)
+        }
+        return fnChildPagingSlector(state, parentId) || getDefauldPaging()
+    })
     const [loading, setLoading] = useState(false)
 
     const hasMoreComment = currentPage < toalPages
@@ -25,14 +32,16 @@ export function useCommentPaging({
         if (loading) {
             return
         }
+
         setLoading(true)
-        dispatch(actFetchCommentAsync({
-            // perPage: 2,
+        const params = {
             currentPage: currentPage + 1,
-            postId: postId,
-            parent: 0,
-            ...extraParams
-        })).then(() => {
+            postId,
+            parentId,
+            exclude
+        }
+
+        dispatch(actFetchCommentAsync(params)).then(() => {
             setLoading(false)
         })
     }
@@ -40,10 +49,12 @@ export function useCommentPaging({
 
     return {
         comments,
-        total,
+        total: _total + (exclude?.length || 0),
         handleLoadMore,
         hasMoreComment,
         toalPages,
-        loading
+        loading,
+        exclude
+
     }
 }

@@ -4,12 +4,23 @@ import { authService } from "../../service/auth"
 
 export const ACT_LOGIN_SUCCESS = 'ACT_LOGIN_SUCCESS'
 export const ACT_LOGOUT = 'ACT_LOGOUT'
+export const ACT_SET_TOKEN = 'ACT_SET_TOKEN'
+
+export function actSetToken(token) {
+    return {
+        type: ACCESS_TOKEN,
+        payload: {
+            token
+        }
+    }
+}
 
 export function actLoginAsync(username, password) {
     return async dispatch => {
         try {
             const response = await authService.login(username, password)
             const token = response.data.token
+            dispatch(actSetToken(token))
             const responseMe = await dispatch(actFetchMeAsync(token))
             return {
                 ok: responseMe.ok,
@@ -31,13 +42,15 @@ export function logOut() {
 }
 
 
+
+
 export function actFetchMeAsync(token) {
     return async dispatch => {
         if (token === undefined) {
             token = localStorage.getItem(ACCESS_TOKEN)
         }
         try {
-            const response = await authService.fetchMe(token)
+            const response = await authService.fetchMe()
             const user = mappingCurrentUser(response.data)
             dispatch(actLoginSuccess({ user, token }))
             return {

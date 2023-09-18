@@ -18,7 +18,7 @@ function PostDetailComments() {
 
   return (
     <div className="post-detail__comments">
-      <CommentForm />
+      <CommentForm parentId={0} />
       <p>{total} Bình luận</p>
       {
         comments.length > 0 && (

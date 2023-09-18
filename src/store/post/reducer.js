@@ -1,4 +1,4 @@
-import { ACT_FETCH_ARTICLES, ACT_FETCH_ARTICLE_LATEST, ACT_FETCH_ARTICLE_POPULAR, ACT_FETCH_POST_DETAIL, ACT_FETCH_RELATED_POST } from "./actions";
+import { ACT_FETCH_ARTICLES, ACT_FETCH_ARTICLE_LATEST, ACT_FETCH_ARTICLE_POPULAR, ACT_FETCH_POST_DETAIL, ACT_FETCH_RELATED_POST, ACT_INCREASE_COMMENT_COUNT } from "./actions";
 
 const initState = {
     articlesLatest: [],
@@ -13,6 +13,14 @@ const initState = {
 
 function reducer(postState = initState, action) {
     switch (action.type) {
+        case ACT_INCREASE_COMMENT_COUNT:
+            return {
+                ...postState,
+                postDetail: {
+                    ...postState.postDetail,
+                    commentCount: postState.postDetail.commentCount + 1 
+                }
+            }
         case ACT_FETCH_ARTICLE_LATEST:
             return {
                 ...postState,
