@@ -9,9 +9,9 @@ function Footer() {
             {/* Footer Column */}
             <div className="tcl-col-12 tcl-col-sm-6 tcl-col-md-4 tcl-col-lg-3">
               <div className="footer-logo">
-                <img src="/assets/images/logo.png" alt="NuxtBlog Logo" />
+                <img src="/assets/images/blog.png" alt="NuxtBlog Logo" />
               </div>
-              <p>© 2020, All Rights Reserved.</p>
+              <p>Personal project Blog</p>
             </div>
             {/* Footer Column */}
             <div className="tcl-col-12 tcl-col-sm-6 tcl-col-md-4 tcl-col-lg-2">
@@ -31,20 +31,21 @@ function Footer() {
                 <p>Liên hệ</p>
               </div>
               <ul className="footer-content__list">
-                <li>Số 01, Khối A1, Toà nhà Đạt Gia, 43 Đường Cây Keo, Tam Phú, Thủ Đức, Hồ Chí Minh</li>
-                <li>0383 308 983</li>
+                <li>Họ và tên: Nguyễn Như Hoài</li>
+                <li>SĐT: 0376681557</li>
+                <li>Gmail: nguyennhuhoai745@gmail.com</li>
+                <li>Địa chỉ: 49 đường số 14, Linh Chiểu, Tp.Thủ Đức, Tp.Hồ Chí Minh</li>
               </ul>
             </div>
             {/* Footer Column */}
             <div className="tcl-col-12 tcl-col-sm-6 tcl-col-md-4 tcl-col-lg-4">
               <div className="footer-title">
-                <p>Fanpage</p>
+                <p>Hỗ trợ</p>
               </div>
               <div className="footer-facebook">
                 <div className="fb-page" data-href="/" data-tabs data-width data-height data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                   <blockquote cite="/" className="fb-xfbml-parse-ignore">
-                    <a href="/">Học Lập Trình Web Thông Qua
-                      Projects Thực Tế</a>
+                    <a href="/">Trung tâm lập trình Zendvn</a>
                   </blockquote>
                 </div>
               </div>

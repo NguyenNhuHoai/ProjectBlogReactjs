@@ -30,7 +30,7 @@ function Input({
 
   if (type === 'search') {
     return (
-      <div className="input-search">
+      <div className="input-search" style={{ color: '#17202A' }}>
         {icon}
         <input
           className={classesSearch}
@@ -50,9 +50,9 @@ function Input({
         {type === 'password' && (
           <i className={classesIconPwd} onClick={handleToggleShowPwd}></i>
         )}
-        <input type={localType} className={className} {...restProps} />
+        <input  style={{ color: 'black' }} type={localType} className={className} {...restProps} />
       </div>
-      {error &&  isShowEror && <span className='form-control__error'>{error}</span>}
+      {error && isShowEror && <span className='form-control__error'>{error}</span>}
     </div>
   )
 }

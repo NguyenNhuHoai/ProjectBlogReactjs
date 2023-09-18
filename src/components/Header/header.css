@@ -4,7 +4,7 @@
   min-width: 0;
   padding: 0 1rem;
   position: relative;
-  background-color: #fff;
+  background-color: #485463;
 }
 
 .header {
@@ -33,8 +33,8 @@
   position: relative;
   overflow: hidden;
   display: inline-block;
-  width: 150px;
-  height: 35px;
+  width: 60%;
+  /* height: 35px; */
   vertical-align: middle;
 }
 
@@ -73,14 +73,14 @@
 .header-nav__lists>li a {
   display: block;
   font-weight: 700;
-  color: #718096;
+  color: white;
   padding: 0.25rem;
 }
 
 .header-nav__lists>li ul {
   position: absolute;
   width: 200px;
-  background-color: #fff;
+  background-color: #485463   ;
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   list-style: none;
@@ -113,6 +113,7 @@
 .header-nav__lists li:hover>a:visited {
   color: #5a67d8;
   text-decoration: none;
+
 }
 
 .header-nav__lists li:hover>ul {

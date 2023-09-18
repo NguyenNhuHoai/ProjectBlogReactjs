@@ -6,7 +6,7 @@ import { AVATAR } from '../../constants'
 function PostDetailAuthor({ post }) {
   const authorLink = genUserLink(post.authorId)
   return (
-    <div className="post-author">
+    <div style={{ color: 'black' }} className="post-author">
       <div className="post-author__bg-avatar">
         <Link to={authorLink} className="post-author__avatar">
           <img src={post.author.avatar ? post.author.avatar : AVATAR} alt="" />
@@ -15,7 +15,7 @@ function PostDetailAuthor({ post }) {
       <div className="post-author__nickname">
         <Link to={authorLink}>{post.author.nickname}</Link>
       </div>
-      <p className="post-author__desc">{post.author.description ? post.author.description : 'No description'}</p>
+      <p  className="post-author__desc">{post.author.description ? post.author.description : 'No description'}</p>
     </div>
 
   )

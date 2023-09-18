@@ -23,8 +23,8 @@ body {
   -webkit-font-smoothing: antialiased;
   margin: 0px;
   text-decoration: none;
-  color: #718096;
-  background-color: #f8f8f8;
+  color: white;
+  background-color: #E5E7E9 ;
 }
 
 .wrapper-content {
@@ -90,7 +90,7 @@ body {
 }
 
 .bg-white {
-  background-color: #fff;
+  background-color: #394556;
 }
 
 .bg-white-blue {
