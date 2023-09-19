@@ -4,7 +4,7 @@ import Input from '../../components/shared/Input'
 import Button from '../../components/shared/Button'
 import { useState } from 'react'
 import { validateFormdata } from '../../helpers'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { actLoginAsync } from '../../store/auth/actions'
 import { useHookAuthenticated } from '../../hooks/useNotAuthenticated'
 
